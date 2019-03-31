@@ -1,0 +1,31 @@
+{
+  "name": "react-search-app",
+  "version": "1.0.0",
+  "description": "This is a git search react app.",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run build",
+    "build": "webpack -d && cp src/index.html dist/index.html && webpack-dev-server --content-base src/ --inline --hot --port 3000",
+    "build:prod": "webpack -p && cp src/index.html dist/index.html",
+    "test": "test"
+  },
+  "keywords": [
+    "search"
+  ],
+  "author": "Babajide Williams",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-stage-2": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1"
+  }
+}
