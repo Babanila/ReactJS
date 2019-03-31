@@ -7,7 +7,7 @@ const defaultWeb = "https://api.github.com";
 const bookmarkedRepositories = returnBookmark();
 
 // Search parameter
-app.get("/defaultWeb/repository_url/:query", async (req, res) => {
+app.get("/repository/:query", async (req, res) => {
   const url = `${defaultWeb}/search/repositories?q=${req.params.query}`;
   try {
     const { data } = await axios.get(url);
@@ -19,7 +19,7 @@ app.get("/defaultWeb/repository_url/:query", async (req, res) => {
 });
 
 // Bookmarks by ID
-app.get("/defaultWeb/repository_bookmark_url/:id", async (req, res) => {
+app.get("/repository_id/:id", async (req, res) => {
   const url = `${defaultWeb}/repositories/${req.params.id}`;
   let result;
   try {
@@ -35,8 +35,8 @@ app.get("/defaultWeb/repository_bookmark_url/:id", async (req, res) => {
     if (duplicateRepo) {
       res.status(202).send("Already a bookmark!");
     } else {
-      saveBookmark(repo);
-      res.status(200).send(repo);
+      saveBookmark(result.data);
+      res.status(200).send(result.data);
     }
   } catch (e) {
     res.status(e.response.status).send(e.response.statusText);
@@ -44,7 +44,7 @@ app.get("/defaultWeb/repository_bookmark_url/:id", async (req, res) => {
 });
 
 // Get all saved bookmarks
-app.get("/defaultWeb/save-repos", (req, res) => {
+app.get("/save-repos", (req, res) => {
   try {
     res.status(200).send({
       numberOfItems: bookmarkedRepositories.length,

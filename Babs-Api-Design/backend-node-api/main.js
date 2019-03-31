@@ -1,7 +1,7 @@
 const bookmarkArray = [];
 
-function alreadyBookmark({ id }) {
-  return bookmarkArray.find(bookmark => bookmark.id === id);
+function alreadyBookmark(repo) {
+  return bookmarkArray.find(bookmark => bookmark.id === repo.id);
 }
 exports.alreadyBookmark = alreadyBookmark;
 

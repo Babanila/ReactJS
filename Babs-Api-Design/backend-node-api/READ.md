@@ -33,22 +33,22 @@ To run each endpoint, you need a web browser and already running server.
 
 - Search parameter endpoint
 
-  - Enter a localhost address using port 5000 (e.g http://localhost:5000/defaultWeb/repository_url/query)
+  - Enter a localhost address using port 5000 (e.g http://localhost:5000/repository/query)
   - query represent your search parameter.
-  - Example: `http://localhost:5000/defaultWeb/repository_url/baba`
+  - Example: `http://localhost:5000/repository/baba`
   - In the example above `query = baba`
 
 - Get Bookmark by ID endpoint
 
-  - Enter a localhost address using port 5000 (e.g http://localhost:5000//defaultWeb/repository_bookmark_url/id)
+  - Enter a localhost address using port 5000 (e.g http://localhost:5000/repository_id/id)
   - id represent your search parameter.
-  - Example: `http://localhost:5000/defaultWeb/repository_bookmark_url/43004479`
+  - Example: `http://localhost:5000/repository_id/43004479`
   - In the example above `repository_id = 43004479`
 
 - Get all saved Bookmarks endpoint
 
-  - Enter a localhost address using port 5000 (e.g http://localhost:5000/defaultWeb/save-repos)
-  - Example: `http://localhost:5000/defaultWeb/save-repos`
+  - Enter a localhost address using port 5000 (e.g http://localhost:5000/save-repos)
+  - Example: `http://localhost:5000/save-repos`
   - Note: `saved-repos` is the database where all saved bookmark are stored.
 
 ### To run unit tests
