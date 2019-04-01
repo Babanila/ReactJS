@@ -6,6 +6,16 @@ const app = express();
 const defaultWeb = "https://api.github.com";
 const bookmarkedRepositories = returnBookmark();
 
+// Setting CORS
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 // Search parameter
 app.get("/repository/:query", async (req, res) => {
   const url = `${defaultWeb}/search/repositories?q=${req.params.query}`;
