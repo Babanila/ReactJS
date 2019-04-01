@@ -1,4 +1,4 @@
-# bab-api
+# backend-node-api
 
 # Table of Contents
 
@@ -19,17 +19,17 @@ Make sure you have installed all of the following prerequisites on your developm
 - Git - [Download & Install Git](https://git-scm.com/downloads). MacOS and Linux machines typically have this already installed.
 - Node.js - [Download & Install Node.js](https://nodejs.org/en/download/) and the npm package manager. Make sure to get the latest active LTS version.
 
-## How to start bab-api
+## How to start backend-node-api
 
 - Go to your terminal.
-- Locate the downloaded bab-api folder.
-- Go into it (e.g `cd bab-api`).
+- Locate the downloaded backend-node-api folder.
+- Change the directory to the root folder(e.g `cd backend-node-api`).
 - Run `npm install`.
 - To start the server, run `node backendApp.js` on your terminal.
 
 ### Usage
 
-To run each endpoint, you need a web browser and already running server.
+To run each endpoint, you need - A web browser - A running server ( e.g start server with `node backendApp.js`).
 
 - Search parameter endpoint
 
@@ -53,4 +53,4 @@ To run each endpoint, you need a web browser and already running server.
 
 ### To run unit tests
 
-- From the root folder, run `npm test` or `yarn test` or `jest`
+- From the root folder, run `npm test` or `yarn test`
