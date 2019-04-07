@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import NavBar from "./components/NavBar";
-import Repositories from "./components/Repositories";
+import InputForm from "./components/InputForm";
 
 class App extends Component {
   render() {
     return (
       <div>
         <NavBar />
-        <Repositories params="baba" />
+        <InputForm />
       </div>
     );
   }
