@@ -1,5 +1,5 @@
 {
-  "name": "bab-api",
+  "name": "backend-node-api",
   "version": "1.0.0",
   "description": "This API can be used to search for Github repositories.",
   "main": "backendApp.js",
@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
+    "cors": "^2.8.5",
     "express": "^4.16.4"
   },
   "devDependencies": {
