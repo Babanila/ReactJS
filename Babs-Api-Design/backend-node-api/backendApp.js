@@ -37,7 +37,8 @@ app.get("/repository_id/:id", async (req, res) => {
 
     const duplicateRepo = alreadyBookmark(repo);
     if (duplicateRepo) {
-      res.status(202).send("Already a bookmark!");
+      console.warn("Already a bookmark!");
+      res.status(200).send(result.data);
     } else {
       saveBookmark(result.data);
       res.status(200).send(result.data);
