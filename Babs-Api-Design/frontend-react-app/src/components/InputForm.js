@@ -41,10 +41,10 @@ export default class InputForm extends React.Component {
   outputResults() {
     const { searchParams, endpoint } = this.state;
     if (!endpoint) {
-      return <h2> Kindly select an endpoint to search </h2>;
+      return <h5>Hint: Kindly select an endpoint to search </h5>;
     }
     if (!searchParams && endpoint !== "http://localhost:5000/save-repos") {
-      return <h2> Enter search parameter </h2>;
+      return <h5>Hint: Enter search parameter </h5>;
     }
 
     if (endpoint === "http://localhost:5000/repository/") {

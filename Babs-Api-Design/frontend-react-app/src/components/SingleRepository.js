@@ -24,8 +24,7 @@ export default class SingleRepository extends Component {
   }
 
   render() {
-    if (this.state.repository.length === 0)
-      return <div>No repository found</div>;
+    if (this.state.repository.length === 0) return <h5>No repository found</h5>;
 
     const repoData = this.state.repository;
     return (

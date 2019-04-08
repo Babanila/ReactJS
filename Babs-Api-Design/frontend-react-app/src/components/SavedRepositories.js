@@ -21,7 +21,7 @@ export default class SavedRepositories extends Component {
 
   render() {
     if (this.state.savedRepositories.length === 0)
-      return <div>No saved repositories </div>;
+      return <h5>No saved repositories </h5>;
 
     const repoData = this.state.savedRepositories.bookmarkedRepositories.map(
       (item, i) => {

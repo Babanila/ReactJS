@@ -24,8 +24,8 @@ export default class Repositories extends Component {
   }
 
   render() {
-    if (this.state.loading) return <div>Loading ...</div>;
-    if (!this.state.repositories) return <div>No repository is available</div>;
+    if (this.state.loading) return <h5> Loading ...</h5>;
+    if (!this.state.repositories) return <h5>No repository is available</h5>;
 
     const repos = this.state.repositories.items.map((item, i) => {
       return (
