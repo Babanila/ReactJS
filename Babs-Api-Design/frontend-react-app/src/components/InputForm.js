@@ -1,87 +1,116 @@
 import React from "react";
-import EndpointInput from "./EndpointInput";
-import TextInput from "./TextInput";
+import Repositories from "./Repositories";
+import SingleRepository from "./SingleRepository";
+import SavedRepositories from "./SavedRepositories";
 
 export default class InputForm extends React.Component {
-  constructor() {
-    super();
-
+  constructor(props) {
+    super(props);
     this.state = {
-      formControls: {
-        endpoint: {
-          value: "Repositories"
-        },
-        inputValue: {
-          value: "",
-          placeholder: "Enter your search parameter"
-        }
-      }
+      endpoint: "",
+      searchParams: "",
+      url: "",
+      repositories: [],
+      isLoading: true
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange = event => {
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+
     this.setState({
-      formControls: {
-        endpoint: event.target.value,
-        inputValue: event.target.value
-      },
-      url: ""
+      [name]: value
     });
-  };
+  }
 
   handleSubmit(event) {
-    console.log("processing...  ");
-    // url: ({this.state.formControls.endpoint.value} + "/" + {this.state.formControls.inputValue.value})
     event.preventDefault();
+    let newUrl;
+    this.state.endpoint === "http://localhost:5000/save-repos"
+      ? (newUrl = `${this.state.endpoint}`)
+      : (newUrl = `${this.state.endpoint}${this.state.searchParams}`);
+
+    this.setState({ url: newUrl });
+  }
+
+  outputResults() {
+    const { searchParams, endpoint } = this.state;
+    if (!endpoint) {
+      return <h2> Kindly select an endpoint to search </h2>;
+    }
+    if (!searchParams && endpoint !== "http://localhost:5000/save-repos") {
+      return <h2> Enter search parameter </h2>;
+    }
+
+    if (endpoint === "http://localhost:5000/repository/") {
+      return (
+        <div>
+          <Repositories query={searchParams} onChange={this.handleSubmit} />
+        </div>
+      );
+    } else if (endpoint === "http://localhost:5000/repository_id/") {
+      return (
+        <div>
+          <SingleRepository id={searchParams} onChange={this.handleSubmit} />
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <SavedRepositories onChange={this.handleSubmit} />
+        </div>
+      );
+    }
   }
 
   render() {
+    const { searchParams, endpoint } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <h4> Select an endpoint</h4>
-        <EndpointInput
-          name="endpoint"
-          value={this.state.formControls.endpoint.value}
-          onChange={this.handleChange}
-        />
-        <h4> Enter endpoint search parameter</h4>
-        <TextInput
-          type="text"
-          name="inputValue"
-          placeholder={this.state.formControls.inputValue.placeholder}
-          value={this.state.formControls.inputValue.value}
-          onChange={this.handleChange}
-        />
-        <input type="submit" value="Submit" />
-      </form>
+      <div>
+        <div>
+          <form onSubmit={this.handleSubmit}>
+            <h4> Select an endpoint</h4>
+            <select
+              name="endpoint"
+              className="form-select"
+              value={this.state.value}
+              onChange={this.handleInputChange}
+            >
+              <option value="" />
+              <option value="http://localhost:5000/repository/">
+                Repositories
+              </option>
+              <option value="http://localhost:5000/repository_id/">
+                Repository Id
+              </option>
+              <option value="http://localhost:5000/save-repos">
+                Saved Repositories
+              </option>
+            </select>
+
+            <h4> Enter endpoint search parameter</h4>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Enter your search parameter"
+              name="searchParams"
+              value={this.state.value}
+              onChange={this.handleInputChange}
+            />
+            <br />
+            <input type="submit" value="Submit" />
+          </form>
+        </div>
+        <div>
+          <h4> {this.state.endpoint}</h4>
+          <div>{this.outputResults(searchParams, endpoint)}</div>
+        </div>
+      </div>
     );
   }
 }
-
-/*
-<form onSubmit={this.handleSubmit}>
-        <h4> Select an endpoint</h4>
-        <select id="endpoint" name="endpoint">
-          <option value="Repositories">Repositories</option>
-          <option value="RepositoryId">Repository Id</option>
-          <option value="SavedRepositories">Saved Repositories</option>
-        </select>
-        <br />
-        <br />
-        <h4> Enter endpoint search parameter</h4>
-        <input
-          type="text"
-          className="form-control"
-          name="inputValue"
-          placeholder={this.state.formControls.inputValue.placeholder}
-          value={this.state.formControls.inputValue.value}
-          onChange={this.handleChange}
-        />
-        <br />
-        <input type="submit" value="Submit" />
-      </form>
-
-*/

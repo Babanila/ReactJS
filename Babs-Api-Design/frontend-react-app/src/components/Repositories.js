@@ -12,9 +12,9 @@ export default class Repositories extends Component {
   }
 
   async componentDidMount() {
-    const { params } = this.props;
+    const { query } = this.props;
     const { data } = await axios.get(
-      `http://localhost:5000/repository/${params.query}`
+      `http://localhost:5000/repository/${query}`
     );
 
     this.setState({
@@ -27,32 +27,34 @@ export default class Repositories extends Component {
     if (this.state.loading) return <div>Loading ...</div>;
     if (!this.state.repositories) return <div>No repository is available</div>;
 
-    const repoData = this.state.repositories.items.map((item, i) => {
+    const repos = this.state.repositories.items.map((item, i) => {
       return (
         <Fragment key={item.id}>
           <p> </p>
           <h4> Item {i + 1}.</h4>
-          <p>id: {item.id}</p>
-          <p>node_id: {item.node_id}</p>
-          <p>name: {item.name}</p>
-          <p>private: {item.private}</p>
-          <p>description: {item.description}</p>
-          <p>url: {item.url}</p>
+          <ul key={item.id}>
+            <li>id: {item.id}</li>
+            <li>node_id: {item.node_id}</li>
+            <li>name: {item.name}</li>
+            <li>private: {item.private}</li>
+            <li>description: {item.description}</li>
+            <li>url: {item.url}</li>
+          </ul>
         </Fragment>
       );
     });
     return (
       <>
         <>
-          <h3>total_count: {this.state.repositories.total_count}</h3>
+          <h3>Total: {this.state.repositories.total_count}</h3>
         </>
         <>
           <h3>
-            incomplete_results: {this.state.repositories.incomplete_results}
+            Incomplete_results: {this.state.repositories.incomplete_results}
             {this.state.visible}
           </h3>
         </>
-        <>{repoData}</>
+        <>{repos}</>
       </>
     );
   }
